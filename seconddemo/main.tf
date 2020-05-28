@@ -37,10 +37,10 @@ resource "aws_ebs_volume" "devopsinactionebs" {
 
 resource "aws_volume_attachment" "myserverebsattch" {
   device_name = "/dev/sdf"
-  volume_id = "${aws_ebs_volume.myserverebs.id}"
+  volume_id = "${aws_ebs_volume.devopsinactionebs.id}"
   instance_id = "${aws_instance.myserver.id}"
 }
 
 output "myserverdetails" {
-  value = "${aws_instance.myserver.public_ip} and ${aws_ebs_volume.myserverebs.id}"
+  value = "${aws_instance.myserver.public_ip} and ${aws_ebs_volume.devopsinactionebs.id}"
 }
