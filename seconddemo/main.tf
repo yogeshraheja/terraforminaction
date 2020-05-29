@@ -3,19 +3,18 @@ provider "aws" {
 }
 
 resource "aws_instance" "myserver" {
-  ami = "${var.ami}"
+  ami = var.ami
   availability_zone = "us-east-1a"
-  instance_type = "${var.instance_type}"
+  instance_type = var.instance_type
   tags = {
     Name = "DevOpsInActionTesttwo"
   }
   provisioner "remote-exec" {
     connection {
       type        = "ssh"
-      user        = "${var.user}"
-      password    = "${var.password}"
-#      host        = "${aws_instance.myserver.public_ip}"
-      host        = "${self.public_ip}"
+      user        = var.user
+      password    = var.password
+      host        = self.public_ip
     }
 
     inline = [
@@ -35,10 +34,10 @@ resource "aws_ebs_volume" "devopsinactionebs" {
   }
 }
 
-resource "aws_volume_attachment" "myserverebsattch" {
+resource "aws_volume_attachment" "myserverebsattach" {
   device_name = "/dev/sdf"
-  volume_id = "${aws_ebs_volume.devopsinactionebs.id}"
-  instance_id = "${aws_instance.myserver.id}"
+  volume_id = aws_ebs_volume.devopsinactionebs.id
+  instance_id = aws_instance.myserver.id
 }
 
 output "myserverdetails" {
