@@ -12,5 +12,5 @@ resource "aws_instance" "myawsserver" {
 }
 
 output "myawsserver" {
-  value = "${aws_instance.myawsserver.public_ip}"
+  value = aws_instance.myawsserver.public_ip
 }
