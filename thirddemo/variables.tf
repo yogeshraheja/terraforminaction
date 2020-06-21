@@ -3,7 +3,7 @@ variable "master_instance_type" {
 }
 
 variable "master_instance_count" {
-        default = 2
+        default = 1
 }
 
 variable "node_instance_type" {
@@ -11,7 +11,7 @@ variable "node_instance_type" {
 }
 
 variable "node_instance_count" {
-        default = 3
+        default = 1
 }
 
 variable "name" {
